@@ -1,6 +1,6 @@
 resource "aws_lambda_function" "soccer" {
   filename      = data.archive_file.function_source.output_path
-  function_name = "lambda_handler"
+  function_name = "soccer-notification"
   role          = "arn:aws:iam::452199140935:role/lambda-cloudformation-dri-CloudFormationDriftLambd-1X754ATUFUGEY"
   handler       = "lambda_function.lambda_handler"
   runtime       = "python3.9"
