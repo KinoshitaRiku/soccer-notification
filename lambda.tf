@@ -1,10 +1,16 @@
 resource "aws_lambda_function" "soccer" {
-  filename      = "lambda_function.zip"
+  filename      = data.archive_file.function_source.output_path
   function_name = "lambda_handler"
   role          = "arn:aws:iam::452199140935:role/lambda-cloudformation-dri-CloudFormationDriftLambd-1X754ATUFUGEY"
   handler       = "lambda_function.lambda_handler"
   runtime       = "python3.9"
   timeout       = 10
+}
+
+data "archive_file" "function_source" {
+  type        = "zip"
+  source_dir  = "lambda"
+  output_path = "archive/lambda_function.zip"
 }
 
 # resource "aws_lambda_permission" "soccer" {
