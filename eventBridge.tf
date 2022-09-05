@@ -1,6 +1,6 @@
 resource "aws_cloudwatch_event_rule" "soccer" {
   name                = "soccer-notification"
-  description         = "マンシーの通知を18時に行う"
+  description         = "マンチェスター・シティの試合があるか18時に通知"
   schedule_expression = "cron(0 9 * * ? *)"
 }
 
