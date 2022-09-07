@@ -12,3 +12,11 @@ data "archive_file" "function_source" {
   source_dir  = "lambda"
   output_path = "archive/lambda_function.zip"
 }
+
+resource "aws_lambda_permission" "default" {
+  statement_id  = "AllowExecutionFromCloudWatch"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.soccer.function_name
+  principal     = "events.amazonaws.com"
+  source_arn    = aws_cloudwatch_event_rule.soccer.arn
+}
